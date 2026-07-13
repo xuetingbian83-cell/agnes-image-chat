@@ -147,9 +147,11 @@ function HomeScreen({ onStart }) {
   );
 }
 
+const assetUrl = (filename) => `${import.meta.env.BASE_URL}${filename}`;
+
 const GALLERY_PHOTOS = [
-  '/reference.jpg',
-  ...Array.from({ length: 28 }, (_, index) => `/gallery-${index + 1}.jpg`),
+  assetUrl('reference.jpg'),
+  ...Array.from({ length: 28 }, (_, index) => assetUrl(`gallery-${index + 1}.jpg`)),
 ];
 
 function GalleryScreen({ onClose, onSelect }) {
@@ -381,13 +383,13 @@ function App() {
   const reviewScreen = reviewParams.get('screen');
   const reviewStage = reviewParams.get('stage');
   const [screen, setScreen] = useState(['home', 'gallery', 'editor', 'result'].includes(reviewScreen) ? reviewScreen : 'home');
-  const [selectedImage, setSelectedImage] = useState(reviewParams.get('empty') === '1' ? null : '/reference.jpg');
+  const [selectedImage, setSelectedImage] = useState(reviewParams.get('empty') === '1' ? null : assetUrl('reference.jpg'));
   const [galleryReturn, setGalleryReturn] = useState('home');
   const [request, setRequest] = useState({
     duration: 10,
     model: 'agnes-video',
     prompt: '帮我让女孩跑动起来，1:1。',
-    imageSrc: '/reference.jpg',
+    imageSrc: assetUrl('reference.jpg'),
   });
   const openGallery = (returnTo = 'home') => {
     setGalleryReturn(returnTo);
