@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+*-wide.png
+qa-*.png
+home.png
+gallery.png
+editor.png
+duration.png
+models.png
+generating.png
+done.png
